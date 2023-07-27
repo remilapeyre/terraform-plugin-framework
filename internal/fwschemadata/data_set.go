@@ -10,11 +10,17 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/internal/reflect"
 	"github.com/hashicorp/terraform-plugin-framework/path"
+	"github.com/hashicorp/terraform-plugin-go/tftypes"
 )
 
 // Set replaces the entire value. The value should be a struct whose fields
 // have one of the attr.Value types. Each field must have the tfsdk field tag.
 func (d *Data) Set(ctx context.Context, val any) diag.Diagnostics {
+	if v, ok := val.(tftypes.Value); ok {
+		d.TerraformValue = v
+		return nil
+	}
+
 	attrValue, diags := reflect.FromValue(ctx, d.Schema.Type(), val, path.Empty())
 
 	if diags.HasError() {
