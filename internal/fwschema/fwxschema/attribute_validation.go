@@ -88,3 +88,12 @@ type AttributeWithStringValidators interface {
 	// StringValidators should return a list of String validators.
 	StringValidators() []validator.String
 }
+
+// AttributeWithStringValidators is an optional interface on Attribute which
+// enables String validation support.
+type AttributeWithDynamicValidators interface {
+	fwschema.Attribute
+
+	// DynamicValidators should return a list of Dynamic validators.
+	DynamicValidators() []validator.Dynamic
+}

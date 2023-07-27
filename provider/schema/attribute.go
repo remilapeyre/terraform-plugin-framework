@@ -18,6 +18,7 @@ import (
 //   - ObjectAttribute
 //   - SetAttribute
 //   - StringAttribute
+//   - DynamicAttribute
 //
 // Additionally, the NestedAttribute interface extends Attribute with nested
 // attributes. Only supported in protocol version 6. Implementations in this
